@@ -49,4 +49,4 @@ spec:
       media:
         enabled: true
         mountPath: /media
-        existingClaim: "torrent-media"
+        existingClaim: "jellyfin-media"
