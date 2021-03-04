@@ -1,0 +1,33 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  namespace: ingress-system
+  name: ingress-nginx
+spec:
+  interval: 1h
+  chart:
+    spec:
+      chart: ingress-nginx
+      sourceRef:
+        kind: HelmRepository
+        namespace: flux-system
+        name: ingress-nginx
+      interval: 10m
+  values:
+    controller:
+      service:
+        type: LoadBalancer
+        loadBalancerIP: 192.168.100.210
+        externalTrafficPolicy: Local
+      autoscaling:
+        enabled: false
+      # metrics:
+      #   port: 10254
+      #   enabled: false
+      #   service:
+      #     annotations:
+      #       prometheus.io/scrape: "true"
+      #       prometheus.io/port: "10254"
+    defaultBackend:
+      enabled: false
