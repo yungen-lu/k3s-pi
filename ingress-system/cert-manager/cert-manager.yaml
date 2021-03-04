@@ -8,7 +8,7 @@ spec:
   interval: 1h
   chart:
     spec:
-      chart: ingress-nginx
+      chart: cert-manager
       sourceRef:
         kind: HelmRepository
         namespace: flux-system
