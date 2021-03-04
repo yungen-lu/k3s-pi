@@ -43,10 +43,10 @@ spec:
     #   type: CluserIP
     #   port:
     #     port: 
-    persistence:
-      data:
-        enabled: true
-        mountPath: /data
-        storageClass: managed-nfs-storage
-        size: 100Mi
-        accessMode: ReadWriteOnce
+    # persistence:
+    #   data:
+    #     enabled: true
+    #     mountPath: /data
+    #     storageClass: managed-nfs-storage
+    #     size: 100Mi
+    #     accessMode: ReadWriteOnce
