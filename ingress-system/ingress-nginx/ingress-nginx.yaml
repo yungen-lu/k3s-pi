@@ -12,7 +12,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         namespace: flux-system
-        name: ingress-nginx
+        name: ingress-nginx-helmchart
       interval: 10m
   values:
     controller:
