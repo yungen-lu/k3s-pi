@@ -41,3 +41,4 @@ spec:
         mountPath: /data
         storageClass: managed-nfs-storage
         size: 1Gi
+        accessMode: ReadWriteOnce
