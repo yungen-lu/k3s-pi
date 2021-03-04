@@ -1,0 +1,36 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  namespace: media
+  name: qbittorrent
+spec:
+  interval: 1h
+  chart:
+    spec:
+      chart: qbittorrent
+      sourceRef:
+        kind: HelmRepository
+        namespace: flux-system
+        name: k8s-at-home-helmchart
+      interval: 10m
+  values:
+    env:
+      TZ: Asia/Taipei
+      PUID: 1000
+      PGID: 1000
+    persistence:
+      config:
+        enabled: true
+        storageClass: managed-nfs-storage
+        size: 1Gi
+      downloads:
+        enabled: true
+        mountPath: /downloads
+        storageClass: managed-nfs-storage
+        accessMode: ReadWriteMany
+        size: 500Gi
+      media:
+        enabled: true
+        mountPath: /media
+        existingClaim: "jellyfin-media"
