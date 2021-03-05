@@ -20,8 +20,8 @@ spec:
       - enabled: true
         nameSuffix: bittorrent
         type: LoadBalancer
-        externalIPs:
-        - 192.168.100.212
+        # externalIPs:
+        # - 192.168.100.212
         port:
           port: 50413
           name: bittorrent
