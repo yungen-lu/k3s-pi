@@ -24,16 +24,9 @@ spec:
       FLOOD_OPTION_RUNDIR: /config
       FLOOD_OPTION_AUTH: "none"
       FLOOD_OPTION_QBURL: "http:/qbittorrent.media.svc.cluster.local:8080"
-    - name: FLOOD_OPTION_QBUSER
-      valueFrom:
-        secretKeyRef:
-          name: qbittorrent-secret
-          key: user
-    - name: FLOOD_OPTION_QBPASS
-      valueFrom:
-        secretKeyRef:
-          name: qbittorrent-secret
-          key: password
+    envFrom:
+    - secretRef:
+        name: qbittorrent-secret
     ingress:
       enabled: true
       annotations:
