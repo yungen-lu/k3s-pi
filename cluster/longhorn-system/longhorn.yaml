@@ -27,11 +27,7 @@ spec:
         - secretName: longhorn-k3s-yungen-studio-tls
           hosts:
             - longhorn.k3s.yungen.studio
-      hosts:
-        - host: longhorn.k3s.yungen.studio
-          paths:
-          - path: /
-            pathType: Prefix
+      hosts: longhorn.k3s.yungen.studio
 
     defaultSettings:
       backupTarget: nfs://192.168.100.201:/nfs
