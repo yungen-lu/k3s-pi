@@ -44,9 +44,7 @@ spec:
         storageSpec:
           volumeClaimTemplate:
             spec:
-              storageClassName: managed-nfs-storage
-              accessModes: ["ReadWriteOnce"]
+              storageClassName: local-path
               resources:
                 requests:
-                  storage: 50Gi
-            selector: {}
+                  storage: 10Gi
