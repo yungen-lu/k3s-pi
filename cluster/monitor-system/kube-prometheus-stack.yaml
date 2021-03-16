@@ -22,29 +22,36 @@ spec:
         annotations:
           kubernetes.io/ingress.class: nginx
           cert-manager.io/cluster-issuer: "letsencrypt-prod"
-          nginx.ingress.kubernetes.io/whitelist-source-range: "10.0.0.0/8, 192.168.100.0/16"
         hosts:
-          - grafana-stack.k3s.yungen.studio
+          - grafana.k3s.yungen.studio
         tls:
-        - secretName: grafana-stack-k3s-yungen-studio-tls
+        - secretName: grafana-k3s-yungen-studio-tls
           hosts:
-            - grafana-stack.k3s.yungen.studio
+            - grafana.k3s.yungen.studio
       admin:
         existingSecret: grafana-secret
         userKey: admin-user
         passwordKey: admin-password
-    prometheus-node-exporter:
-      tolerations:
-      - key: "arm"
-        operator: "Exists"
-      - key: "armhf"
-        operator: "Exists"
+    kubeEtcd:
+      enabled: false
+    kube-controller-manager:
+      enabled
+    alertmanager:
+      enabled: false
+    # prometheus-node-exporter:
+    #   tolerations:
+    #   - key: "arm"
+    #     operator: "Exists"
+    #   - key: "armhf"
+    #     operator: "Exists"
     prometheus:
       prometheusSpec:
+        retention: 3d
         storageSpec:
           volumeClaimTemplate:
             spec:
+              accessModes: ["ReadWriteOnce"]
               storageClassName: local-path
               resources:
                 requests:
-                  storage: 10Gi
+                  storage: 8Gi
