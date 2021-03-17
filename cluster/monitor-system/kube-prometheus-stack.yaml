@@ -35,8 +35,10 @@ spec:
     kubeEtcd:
       enabled: false
     kube-controller-manager:
-      enabled
+      enabled: false
     alertmanager:
+      enabled: false
+    kubeScheduler:
       enabled: false
     # prometheus-node-exporter:
     #   tolerations:
