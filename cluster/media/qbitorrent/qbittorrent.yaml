@@ -13,7 +13,7 @@ spec:
         kind: HelmRepository
         namespace: flux-system
         name: k8s-at-home-helmchart
-      interval: 10m
+      interval: 1h
   values:
     service:
       additionalServices:
@@ -57,8 +57,8 @@ spec:
         enabled: true
         mountPath: /downloads
         storageClass: managed-nfs-storage
-        accessMode: ReadWriteMany
-        size: 500Gi
+        accessMode: ReadWriteOnce
+        size: 100Gi
       media:
         enabled: true
         mountPath: /media
