@@ -16,7 +16,7 @@ spec:
       interval: 1h
   values:
     grafana:
-      enabled: true
+      enabled: false
       ingress:
         enabled: true
         annotations:
