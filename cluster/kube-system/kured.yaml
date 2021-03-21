@@ -1,0 +1,27 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  namespace: kube-system
+  name: kured
+spec:
+  interval: 1h
+  chart:
+    spec:
+      chart: kured
+      sourceRef:
+        kind: HelmRepository
+        namespace: flux-system
+        name: weaveworks-kured-helmchart
+      interval: 1h
+      version: 2.3.2
+  values:
+    image:
+      repository: raspbernetes/kured
+      tag: 1.6.1
+
+    configuration:
+      timeZone: Asia/Taipei
+      startTime: 14:00
+      endTime: 17:00
+      period: 1h0m0s # default check period
