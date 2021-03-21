@@ -16,7 +16,7 @@ spec:
       interval: 1h
   values:
     grafana:
-      enabled: false
+      enabled: true
       ingress:
         enabled: true
         annotations:
@@ -28,6 +28,14 @@ spec:
         - secretName: grafana-k3s-yungen-studio-tls
           hosts:
             - grafana.k3s.yungen.studio
+      dashboards:
+        default:
+          home:
+            gnetId: 13105
+            revision: 5
+          node:
+            gnetId: 12869
+            revision: 3
       admin:
         existingSecret: grafana-secret
         userKey: admin-user
