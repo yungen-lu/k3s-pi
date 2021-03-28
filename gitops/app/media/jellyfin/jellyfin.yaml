@@ -24,6 +24,9 @@ spec:
       supplementalGroups:
       - 44
       - 109
+    service:
+      port:
+        port: 8096
     nodeSelector:
       nfs: master
     ingress:
