@@ -13,6 +13,5 @@ spec:
         kind: HelmRepository
         namespace: flux-system
         name: jetstack-helmchart
-      interval: 1h
   values:
-    installCRDs: true
+    installCRDs: false
