@@ -13,7 +13,6 @@ spec:
         kind: HelmRepository
         namespace: flux-system
         name: k8s-at-home-helmchart
-      interval: 1h
   values:
     ingress:
       enabled: true
@@ -34,12 +33,12 @@ spec:
     persistence:
       config:
         enabled: true
-        storageClass: managed-nfs-storage
+        storageClass: longhorn
         size: 1Gi
 
       media:
         enabled: true
-        storageClass: managed-nfs-storage
+        storageClass: nfs-storage
         size: 2Ti
         accessMode: ReadWriteOnce
 
