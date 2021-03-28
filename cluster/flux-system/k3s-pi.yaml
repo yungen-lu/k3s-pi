@@ -7,7 +7,7 @@ metadata:
 spec:
   interval: 10m0s
   path: ./gitops/crd
-  prune: false
+  prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -35,7 +35,7 @@ metadata:
 spec:
   interval: 10m0s
   path: ./gitops/infra
-  prune: false
+  prune: true
   dependsOn:
     - name: source
   sourceRef:
