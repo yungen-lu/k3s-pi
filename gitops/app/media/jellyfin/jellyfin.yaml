@@ -16,7 +16,7 @@ spec:
   values:
     image:
       repository: linuxserver/jellyfin
-      tag: arm64v8-latest
+      tag: version-10.6.4-1
     env:
       TZ: "Asia/Taipei"
       # JELLYFIN_CACHE_DIR: "/config/cache"
