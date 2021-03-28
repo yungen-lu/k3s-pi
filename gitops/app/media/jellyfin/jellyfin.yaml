@@ -15,11 +15,11 @@ spec:
         name: k8s-at-home-helmchart
   values:
     image:
-      repository: jellyfin/jellyfin
+      repository: linuxserver/jellyfin
       tag: 10.7.1
     env:
       TZ: "Asia/Taipei"
-      JELLYFIN_CACHE_DIR: "/config/cache"
+      # JELLYFIN_CACHE_DIR: "/config/cache"
     podSecurityContext:
       supplementalGroups:
       - 44
