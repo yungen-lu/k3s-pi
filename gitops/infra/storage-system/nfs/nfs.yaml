@@ -13,12 +13,14 @@ spec:
         kind: HelmRepository
         namespace: flux-system
         name: nfs-subdir-external-provisioner-helmchart
-      interval: 1h
   values:
     nfs:
-      server: 192.168.100.201
+      server: 192.168.100.202
       path: /nfs
       # mountOptions:
     storageClass:
-      name: managed-nfs-storage
+      name: nfs-storage
+      allowVolumeExpansion: true
+      reclaimPolicy: Delete
+      archiveOnDelete: true
       pathPattern: ${.PVC.namespace}-${.PVC.name}
