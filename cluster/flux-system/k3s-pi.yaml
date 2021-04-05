@@ -54,7 +54,7 @@ spec:
   prune: true
   dependsOn:
     - name: source
-    - name: crd
+    # - name: crd
     - name: infra
   sourceRef:
     kind: GitRepository
