@@ -15,8 +15,8 @@ spec:
         name: k8s-at-home-helmchart
   values:
     image:
-      repository: linuxserver/jellyfin
-      tag: version-10.6.4-1
+      repository: jellyfin/jellyfin
+      tag: 10.7.1
     env:
       TZ: "Asia/Taipei"
       # JELLYFIN_CACHE_DIR: "/config/cache"
@@ -24,7 +24,13 @@ spec:
       supplementalGroups:
       - 44
       - 109
+      - 100
     service:
+      enabled: true
+      type: LoadBalancer
+      externalIPs:
+      - 192.168.100.212
+      externalTrafficPolicy: Local
       port:
         port: 8096
     nodeSelector:
@@ -34,7 +40,7 @@ spec:
       annotations:
         kubernetes.io/ingress.class: nginx
         cert-manager.io/cluster-issuer: "letsencrypt-prod"
-        # nginx.ingress.kubernetes.io/whitelist-source-range: "10.0.0.0/8, 192.168.100.0/16"
+        nginx.ingress.kubernetes.io/whitelist-source-range: "10.0.0.0/8, 192.168.100.0/16"
       tls:
         - secretName: jellyfin-k3s-yungen-studio-tls
           hosts:
@@ -49,7 +55,7 @@ spec:
       config:
         enabled: true
         storageClass: nfs-storage
-        size: 1Gi
+        size: 20Gi
 
       media:
         enabled: true
