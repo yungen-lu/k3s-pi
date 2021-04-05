@@ -28,8 +28,6 @@ spec:
     service:
       enabled: true
       type: LoadBalancer
-      externalIPs:
-      - 192.168.100.212
       externalTrafficPolicy: Local
       port:
         port: 8096
