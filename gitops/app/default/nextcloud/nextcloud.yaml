@@ -28,6 +28,10 @@ spec:
       hosts:
         - host: nextcloud.k3s.yungen.studio
           paths: [/]
+      tls:
+        - secretName: jellyfin-k3s-yungen-studio-tls
+          hosts:
+            - jellyfin.k3s.yungen.studio
 
     persistence:
       enabled: true
