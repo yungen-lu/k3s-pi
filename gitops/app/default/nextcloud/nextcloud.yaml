@@ -24,6 +24,7 @@ spec:
       enabled: true
       annotations:
         kubernetes.io/ingress.class: nginx
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
         nginx.ingress.kubernetes.io/proxy-body-size: 50G
         nginx.ingress.kubernetes.io/server-snippet: |-
           server_tokens off;
