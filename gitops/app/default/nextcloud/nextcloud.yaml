@@ -60,14 +60,14 @@ spec:
             'overwriteprotocol' => 'https'
           );
 
-      extraVolumes:
-        - name: jellyfin-media
-          persistentVolumeClaim:
-            claimName: jellyfin-media
+      # extraVolumes:
+      #   - name: jellyfin-media
+      #     persistentVolumeClaim:
+      #       claimName: jellyfin-media
 
-      extraVolumeMounts:
-        - name: jellyfin-media
-          mountPath: /jellyfin-media
+      # extraVolumeMounts:
+      #   - name: jellyfin-media
+      #     mountPath: /jellyfin-media
 
       extraEnv:
         - name: REDIS_HOST
