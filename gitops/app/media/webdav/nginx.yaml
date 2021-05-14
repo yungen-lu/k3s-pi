@@ -1,0 +1,78 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webdav
+  namespace: media
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webdav
+  template:
+    metadata:
+      labels:
+        app: webdav
+    spec:
+      containers:
+      - name: webdav
+        image: nginx
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - mountPath: /etc/nginx # mount nginx-conf volumn to /etc/nginx
+          readOnly: true
+          name: webdav-conf
+        - mountPath: /mnt/media
+          name: media-pv
+        - mountPath: /etc/nginx
+          readOnly: true
+          name: password
+      volumes:
+      - name: webdav-conf
+        configMap:
+          name: webdav-conf
+      - name: password
+        configMap:
+          name: password
+      - name: media-pv
+        persistentVolumeClaim:
+          claimName: jellyfin-media
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: webdav
+  namespace: media
+spec:
+  type: NodePort
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: webdav
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: webdav-ingress
+  namespace: media
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  tls:
+  - hosts:
+      - "webdav.k3s.yungen.studio"
+    secretName: webdav-k3s-yungen-studio-tls
+  rules:
+  - host: "webdav.k3s.yungen.studio"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: webdav
+            port:
+              number: 80
