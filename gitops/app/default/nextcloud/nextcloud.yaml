@@ -53,12 +53,12 @@ spec:
           upload_max_filesize=10G
           post_max_size=10G
           memory_limit=4G
-      configs:
-        https.config.php: |-
-          <?php
-          $CONFIG = array (
-            'overwriteprotocol' => 'https'
-          );
+      # configs:
+      #   https.config.php: |-
+      #     <?php
+      #     $CONFIG = array (
+      #       'overwriteprotocol' => 'https'
+      #     );
 
       # extraVolumes:
       #   - name: jellyfin-media
