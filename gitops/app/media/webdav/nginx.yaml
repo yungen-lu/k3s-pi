@@ -25,7 +25,7 @@ spec:
           name: webdav-conf
         - mountPath: /mnt/media
           name: media-pv
-        - mountPath: /etc/nginx
+        - mountPath: /etc/nginx/.htpasswd
           readOnly: true
           name: password
       volumes:
