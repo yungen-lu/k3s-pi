@@ -25,16 +25,16 @@ spec:
           name: webdav-conf
         - mountPath: /mnt/media
           name: media-pv
-        - mountPath: /etc/nginx/.htpasswd
-          readOnly: true
-          name: password
+        # - mountPath: /etc/nginx/.htpasswd
+        #   readOnly: true
+        #   name: password
       volumes:
       - name: webdav-conf
         configMap:
           name: webdav-conf
-      - name: password
-        configMap:
-          name: password
+      # - name: password
+      #   configMap:
+      #     name: password
       - name: media-pv
         persistentVolumeClaim:
           claimName: jellyfin-media
