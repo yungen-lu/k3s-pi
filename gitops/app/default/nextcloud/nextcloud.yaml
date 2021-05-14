@@ -95,7 +95,4 @@ spec:
     livenessProbe:
       enabled: true
       initialDelaySeconds: 800 # first install is slow in rsync
-    readinessProbe:
-      enabled: true
-      initialDelaySeconds: 800
     
