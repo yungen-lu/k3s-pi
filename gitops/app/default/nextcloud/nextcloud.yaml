@@ -9,7 +9,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         namespace: flux-system
-        name: nextcloud
+        name: nextcloud-helmchart
       # renovate: registryUrl=https://nextcloud.github.io/helm/
       chart: nextcloud
       version: 2.5.4
