@@ -54,12 +54,12 @@ spec:
   prune: true
   dependsOn:
     - name: source
-    # - name: crd
+    - name: crd
     - name: infra
   sourceRef:
     kind: GitRepository
     name: flux-system
-  # decryption:
-  #   provider: sops
-  #   secretRef:
-  #     name: sops-gpg
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-gpg
