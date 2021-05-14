@@ -23,7 +23,7 @@ spec:
         # externalIPs:
         # - 192.168.100.212
         port:
-          port: 50413
+          port: 6881
           name: bittorrent
           protocol: TCP
           targetPort: 6881
