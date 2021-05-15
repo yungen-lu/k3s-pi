@@ -16,11 +16,11 @@ spec:
     spec:
       containers:
       - name: dav
-        image: duxlong/webdav
+        image: ugeek/webdav:arm-alpine
         ports:
         - containerPort: 80
         volumeMounts:
-        - mountPath: /data
+        - mountPath: /data/media
           name: media-pv
         env:
           - name: USERNAME
@@ -33,6 +33,10 @@ spec:
               secretKeyRef:
                 name: dav-secret
                 key: password
+          # - name: UDI
+          #   value: 1000
+          # - name: GID
+          #   value: 1000
       volumes:
       - name: media-pv
         persistentVolumeClaim:
