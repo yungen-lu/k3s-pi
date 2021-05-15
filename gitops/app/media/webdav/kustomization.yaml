@@ -8,6 +8,6 @@ configMapGenerator:
   - name: webdav-conf
     files:
       - conf/nginx.conf
-  - name: password
-    files:
-      - conf/.htpasswd
+  # - name: password
+  #   files:
+  #     - conf/.htpasswd
