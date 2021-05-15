@@ -1,0 +1,79 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dav
+  namespace: media
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dav
+  template:
+    metadata:
+      labels:
+        app: dav
+    spec:
+      containers:
+      - name: dav
+        image: duxlong/webdav
+        env:
+      - name: USERNAME
+        valueFrom:
+          secretKeyRef:
+            name: dav-secret
+            key: username
+      - name: PASSWORD
+        valueFrom:
+          secretKeyRef:
+            name: dav-secret
+            key: password
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - mountPath: /data
+          name: media-pv
+      - name: media-pv
+        persistentVolumeClaim:
+          claimName: jellyfin-media
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dav
+  namespace: media
+spec:
+  type: NodePort
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: dav
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: dav-ingress
+  namespace: media
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    # nginx.ingress.kubernetes.io/auth-type: auth_basic
+    # nginx.ingress.kubernetes.io/auth-secret: webdav-secret
+    # nginx.ingress.kubernetes.io/auth-realm: "Authentication Required - ok"
+spec:
+  tls:
+  - hosts:
+      - "dav.k3s.yungen.studio"
+    secretName: dav-k3s-yungen-studio-tls
+  rules:
+  - host: "dav.k3s.yungen.studio"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: dav
+            port:
+              number: 80
