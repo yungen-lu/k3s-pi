@@ -17,22 +17,23 @@ spec:
       containers:
       - name: dav
         image: duxlong/webdav
-        env:
-      - name: USERNAME
-        valueFrom:
-          secretKeyRef:
-            name: dav-secret
-            key: username
-      - name: PASSWORD
-        valueFrom:
-          secretKeyRef:
-            name: dav-secret
-            key: password
         ports:
         - containerPort: 80
         volumeMounts:
         - mountPath: /data
           name: media-pv
+        env:
+          - name: USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: dav-secret
+                key: username
+          - name: PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: dav-secret
+                key: password
+      volumes:
       - name: media-pv
         persistentVolumeClaim:
           claimName: jellyfin-media
